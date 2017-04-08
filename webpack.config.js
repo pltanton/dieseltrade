@@ -18,8 +18,12 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        include: /client/,
+        exclude: /node_modules/,
         loaders: ["babel-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
