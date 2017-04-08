@@ -17,7 +17,6 @@ var DATA={
         "content": { "text": "first slide one" },
       },
       {
-        "anchor": "first-two",
         "type": "simple text",
         "content": { "text": "first slide two" },
         "active": true,

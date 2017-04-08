@@ -12,7 +12,7 @@ function Slide(props) {
   }
 
   return(
-    <div className="slide" data-anchor={`#${slide.anchor}`}>
+    <div className={`slide ${slide.active ? 'active' : ''}`} data-anchor={`#${props.anchor}`}>
       <SlideElement content={slide.content} />
     </div>
   );
@@ -28,7 +28,7 @@ class Section extends Component {
   render() {
     const section = this.props.section;
     const slides = section.slides.map((e, index) => {
-      return(<Slide slide={e} key={index}/>);
+      return(<Slide slide={e} key={index} anchor={index}/>);
     });
 
     return (
