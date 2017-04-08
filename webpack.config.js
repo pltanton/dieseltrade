@@ -1,4 +1,10 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: 'index.html',
+  filename: 'index.html',
+  inject: 'body',
+});
+
 module.exports = {
   context: __dirname + "/client",
   entry: "./index.js",
@@ -18,9 +24,5 @@ module.exports = {
     ],
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'dieseltrade',
-    }),
-  ],
+  plugins: [HtmlWebpackPluginConfig],
 }

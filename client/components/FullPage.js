@@ -3,6 +3,7 @@ import 'fullpage.js';
 
 import React, { Component } from 'react';
 import Section from './Section'
+import Menu from './Menu'
 
 var DATA={
   "sections": [
@@ -43,10 +44,10 @@ class FullPage extends Component {
 
     return (
       <div>
-      <div id="menu" />
-      <div id="fullpage">
-        {sections}
-      </div>
+        <Menu />
+        <div id="fullpage">
+          {sections}
+        </div>
       </div>
     );
   }
