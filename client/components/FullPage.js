@@ -2,7 +2,7 @@ import $ from 'jquery'
 import 'fullpage.js';
 
 import React, { Component } from 'react';
-import Section from './Section.jsx'
+import Section from './Section'
 
 var DATA={
   "sections": [
@@ -27,6 +27,8 @@ class FullPage extends Component {
 
   componentDidMount() {
     $('#fullpage').fullpage({
+      menu: '#menu',
+
       verticalCentered: true,
       sectionsColor: this.state.data.sections.map((e) => {return e.color}),
     });
@@ -40,8 +42,11 @@ class FullPage extends Component {
     console.log(sections);
 
     return (
+      <div>
+      <div id="menu" />
       <div id="fullpage">
         {sections}
+      </div>
       </div>
     );
   }

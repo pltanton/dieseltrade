@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import FullPage from './FullPage.jsx'
+import FullPage from './FullPage'
+import Menu from './Menu'
 
 class App extends Component {
   render() {
     return (
-      <FullPage />
+      <div>
+        <Menu />
+        <FullPage />
+      </div>
     );
   }
 }
