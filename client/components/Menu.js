@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-//import './Menu.css'
+
+function MenuItem(props) {
+  return(
+    <li data-menuanchor={props.anchor}>
+      <a href={`#${props.anchor}`}>{props.title}</a>
+    </li>
+  );
+}
 
 class Menu extends Component {
   render() {
-    return (
-      <div id="menu" className="Menu">
-        A menu block
-      </div>
+    var menuItems = this.props.sections.map((section) => {
+      return(<MenuItem anchor={section.anchor} title={section.title} key={section.anchor}/>);
+    });
+    return(
+      <ul id="menu" className="menu">
+        {menuItems}
+      </ul>
     );
   }
 }
