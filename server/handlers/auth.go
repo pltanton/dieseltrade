@@ -65,7 +65,18 @@ func GenerateJWT(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) 
 // RequireTokenAuth is a midleware which checks JWT token by Authorization header
 // and passes parsed token context
 func RequireTokenAuth(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	tokenString := r.Header.Get("Authorization")
+	tokenString := r.Header.Get("JWT")
+	if tokenString == "" {
+		cookieJWT, err := r.Cookie("JWT")
+		if err != nil {
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte("No JWT provided"))
+			log.Println(err)
+			log.Println(r.Cookies())
+			return
+		}
+		tokenString = cookieJWT.Value
+	}
 	// TODO: read secret from cofig file
 	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil

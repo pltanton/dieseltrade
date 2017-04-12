@@ -10,5 +10,6 @@ func Init() *mux.Router {
 	api := r.PathPrefix("/api/").Subrouter()
 	initDataRoutes(api)
 	initSessionRoutes(api)
+	initStatic(r)
 	return r
 }
