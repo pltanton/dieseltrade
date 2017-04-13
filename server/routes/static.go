@@ -11,9 +11,9 @@ import (
 
 func initStatic(r *mux.Router) {
 	fileServer := http.FileServer(http.Dir("dist"))
-	r.PathPrefix("/admin/").Handler(negroni.New(
+	r.PathPrefix("/admin").Handler(negroni.New(
 		negroni.HandlerFunc(handlers.RequireTokenAuth),
-		negroni.Wrap(http.StripPrefix("/admin/", fileServer)),
+		negroni.Wrap(http.StripPrefix("/admin", fileServer)),
 	))
 	r.PathPrefix("/").Handler(fileServer)
 }

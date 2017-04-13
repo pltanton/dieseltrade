@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import 'fullpage.js';
 import 'fullpage.js/dist/jquery.fullpage.css';
 
@@ -37,7 +36,15 @@ var DATA={
 class FullPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {data: DATA};
+    self = this;
+    $.ajax({
+      url: '/api/data',
+      method: 'get',
+      async: false,
+      success: (data) => {
+        self.state = {data: data};
+      }
+    });
   }
 
   componentDidMount() {
@@ -52,7 +59,8 @@ class FullPage extends Component {
 
   render() {
     const sections = this.state.data.sections.map((section) => {
-      return <Section section={section} key={section.anchor} />
+      return <Section admin={this.props.admin} section={section}
+                      key={section.anchor} />
     });
 
     return (

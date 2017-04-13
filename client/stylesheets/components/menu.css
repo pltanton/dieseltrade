@@ -1,0 +1,33 @@
+ul.menu {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    background: #0b1351;
+    background: linear-gradient(to top, #000000 0%,#0b1351 1%);
+    top: 0;
+    left: 0;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    & li {
+        padding: 10px;
+        color: white;
+        font-family: sans;
+        font-size: 18pt;
+        transition: background-color 200ms linear;
+
+        & a {
+            &, &:active, &:visited, &:hover {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        &.active {
+          background-color: #121e81;
+        }
+    }
+}
+

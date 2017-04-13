@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: 'index.html',
@@ -22,15 +24,33 @@ module.exports = {
         loaders: ["babel-loader"],
       },
       {
-        test: /\.s[ac]ss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"],
-      },
-      {
         test: /\.css$/,
-        loaders: ["style-loader", "css-loader"],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: 'inline'
+            }
+          }
+        ]
       },
     ],
   },
 
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    HtmlWebpackPluginConfig,
+    new webpack.ProvidePlugin({
+      $: 'jquery'
+    })
+  ],
 }

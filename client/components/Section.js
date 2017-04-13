@@ -13,14 +13,23 @@ function Slide(props) {
 
   return(
     <div className={`slide ${slide.active ? 'active' : ''}`} data-anchor={`#${props.anchor}`}>
+      {props.admin ? <AdminBar/> : null}
       <SlideElement content={slide.content} />
     </div>
   );
 }
 
 function SimpleText(props) {
-  return (
+  return(
     <span>{props.content.text}</span>
+  );
+}
+
+function AdminBar(props) {
+  return(
+    <div className='admin-panel'>
+      Ololo
+    </div>
   );
 }
 
@@ -28,7 +37,7 @@ class Section extends Component {
   render() {
     const section = this.props.section;
     const slides = section.slides.map((e, index) => {
-      return(<Slide slide={e} key={index} anchor={index}/>);
+      return(<Slide admin={this.props.admin} slide={e} key={index} anchor={index}/>);
     });
 
     return (

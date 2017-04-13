@@ -1,0 +1,9 @@
+.section {
+    text-align: center;
+    & .slide {
+        & .admin-panel {
+            position: absolute;
+            top: 60px;
+        }
+    }
+}
