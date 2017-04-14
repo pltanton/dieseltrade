@@ -20,8 +20,24 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        include: [
+          /client/,
+        ],
         loaders: ["babel-loader"],
+      },
+      {
+        test: /\.(svg|png|jpg)$/,
+        loader: "file-loader",
+        options: {
+          name: 'images/[name]-[hash].[ext]'
+        }
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]',
+        },
       },
       {
         test: /\.css$/,
@@ -50,7 +66,8 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     new webpack.ProvidePlugin({
-      $: 'jquery'
-    })
+      React: 'react',
+      Component: ['react', 'Component'],
+    }),
   ],
 }

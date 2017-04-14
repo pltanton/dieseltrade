@@ -1,74 +1,63 @@
-import 'fullpage.js';
-import 'fullpage.js/dist/jquery.fullpage.css';
-
-import React, { Component } from 'react';
-import Section from './Section'
+import Slide from './Slide'
 import Menu from './Menu'
-
-var DATA={
-  "sections": [
-    {
-      "title": "First",
-      "color": "#abc",
-      "anchor": "first-one",
-      "slides": [{
-        "type": "simple text",
-        "content": { "text": "first slide one" },
-      },
-      {
-        "type": "simple text",
-        "content": { "text": "first slide two" },
-        "active": true,
-      }],
-    },
-    {
-      "title": "Seccond",
-      "color": "#ccc",
-      "anchor": "seccond",
-      "slides": [{
-        "type": "simple text",
-        "content": { "text": "testik2" },
-      }],
-    },
-  ],
-};
+import {SectionsContainer, Section, Header} from 'react-fullpage';
 
 class FullPage extends Component {
   constructor(props) {
     super(props);
-    self = this;
-    $.ajax({
-      url: '/api/data',
-      method: 'get',
-      async: false,
-      success: (data) => {
-        self.state = {data: data};
-      }
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/data', false);
+    xhr.send();
+    this.state = {data: JSON.parse(xhr.responseText)}
+  }
+
+  // Returns a handler, which should be provided to section by ID.
+  // Returned hadler sets a new context for idx's section.
+  handleContentChange = (idx) => {
+    return((newContent) => {
+      let sections = this.state.data.sections.slice();
+      sections[idx].slide.content = newContent;
+      this.setState({data: {sections: sections}});
     });
   }
 
-  componentDidMount() {
-    $('#fullpage').fullpage({
-      menu: '#menu',
-      anchors: this.state.data.sections.map((e) => e.anchor),
-
-      verticalCentered: true,
-      sectionsColor: this.state.data.sections.map((e) => e.color),
+  // Returned handler, which updates section properties
+  handleSectionPropertiesChange = (idx) => {
+    return((newProperties) => {
+      let sections = this.state.data.sections.slice();
+      Object.assign(sections[idx], newProperties);
+      this.setState({data: {sections: sections}});
     });
   }
 
   render() {
-    const sections = this.state.data.sections.map((section) => {
-      return <Section admin={this.props.admin} section={section}
-                      key={section.anchor} />
+    const slides = this.state.data.sections.map((section, idx) => {
+      return(
+        <Section color={section.color} key={idx}>
+          <Slide admin={this.props.admin} section={section}
+                 onContentChange={this.handleContentChange(idx)}
+                 onSectionPropertiesChange={this.handleSectionPropertiesChange(idx)} />
+        </Section>
+      );
     });
+
+    let fullPageOptions = {
+      sectionClassName:     'section',
+      anchors:              this.state.data.sections.map((e, idx) => idx),
+      scrollBar:            false,
+      navigation:           true,
+      verticalAlign:        true,
+      arrowNavigation:      true
+    };
 
     return (
       <div>
-        <Menu sections={this.state.data.sections} />
-        <div id="fullpage">
-          {sections}
-        </div>
+        <Header>
+          <Menu admin={this.props.admin} sections={this.state.data.sections}/>
+        </Header>
+        <SectionsContainer className="container" {...fullPageOptions}>
+          {slides}
+        </SectionsContainer>
       </div>
     );
   }

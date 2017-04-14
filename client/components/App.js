@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import FullPage from './FullPage'
 import {
   BrowserRouter as Router,
