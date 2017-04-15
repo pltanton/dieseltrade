@@ -1,6 +1,7 @@
+import {SectionsContainer, Section, Header} from 'react-fullpage';
 import Slide from './Slide'
 import Menu from './Menu'
-import {SectionsContainer, Section, Header} from 'react-fullpage';
+import {colorToString} from './Utils';
 
 class FullPage extends Component {
   constructor(props) {
@@ -32,12 +33,23 @@ class FullPage extends Component {
 
   render() {
     const slides = this.state.data.sections.map((section, idx) => {
+      let style
+      if(section.bgimage) {
+        style = {
+          backgroundImage: `url(${section.bgimage})`,
+          backgroundSize: 'cover',
+        }
+      }
+
       return(
-        <Section color={section.color} key={idx}>
-          <Slide admin={this.props.admin} section={section}
-                 onContentChange={this.handleContentChange(idx)}
-                 onSectionPropertiesChange={this.handleSectionPropertiesChange(idx)} />
-        </Section>
+        // That wrapper is used to set background image
+        <div style={style} key={idx}>
+          <Section color={section.usecolor ? colorToString(section.color) : undefined} >
+            <Slide admin={this.props.admin} section={section}
+                   onContentChange={this.handleContentChange(idx)}
+                   onSectionPropertiesChange={this.handleSectionPropertiesChange(idx)} />
+          </Section>
+        </div>
       );
     });
 
@@ -45,6 +57,7 @@ class FullPage extends Component {
       sectionClassName:     'section',
       anchors:              this.state.data.sections.map((e, idx) => idx),
       scrollBar:            false,
+        addingTop:           60,
       navigation:           true,
       verticalAlign:        true,
       arrowNavigation:      true

@@ -1,24 +1,9 @@
 import SectionProperties from './SectionProperties';
-import {Icon, Container, Form, TextArea} from 'semantic-ui-react';
+import {Icon, Container} from 'semantic-ui-react';
+import {SimpleText, SimpleTextEdit} from './slides/SimpleText'
 
-function SimpleText(props) {
-  return(
-    <span>{props.content.text}</span>
-  );
-}
-
-class SimpleTextEdit extends Component{
-  handleContentChange = (event) => {
-    this.props.onContentChange({text: event.target.value});
-  }
-
-  render() {
-    return(
-      <Form>
-        <TextArea value={this.props.content.text} onChange={this.handleContentChange} />
-      </Form>
-    );
-  }
+const SLIDE_TYPE_MAP = {
+  'simple text': [SimpleText, SimpleTextEdit]
 }
 
 function AdminBar(props) {
@@ -47,17 +32,10 @@ class Slide extends Component {
 
   render() {
     const slide = this.props.section.slide;
-    var SlideElement;
-    switch(slide.type) {
-      case "simple text":
-        SlideElement = this.state.edit ? SimpleTextEdit : SimpleText;
-        break;
-      default:
-        SlideElement = null;
-    }
+    let SlideElement = SLIDE_TYPE_MAP[slide.type][this.state.edit ? 1 : 0];
 
     return(
-      <div className='slide'>
+      <div className='slide' >
         {this.props.admin ? <AdminBar edit={this.state.edit} onSettingsToggle={this.handleSettingsToggle} /> : null}
         <Container text>
           {this.state.edit && <SectionProperties section={this.props.section}

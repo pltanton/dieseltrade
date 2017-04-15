@@ -11,7 +11,9 @@ func GetData(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	"sections": [
 	{
 		"title": "First",
-		"color": "#abc",
+		"color": {"r": 1, "g": 223, "b": 64, "a": 0.54},
+		"usecolor": true,
+		"bgimage": "/images/bg1.svg",
 		"anchor": "first",
 		"slide": {
 			"type": "simple text",
@@ -21,7 +23,9 @@ func GetData(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		}
 	}, {
 		"title": "Seccond",
-		"color": "#135",
+		"color": {"r": 101, "g": 223, "b": 64, "a": 0.42},
+		"usecolor": false,
+		"bgimage": "/images/bg2.svg",
 		"anchor": "seccond",
 		"slide": {
 			"type": "simple text",
@@ -31,7 +35,9 @@ func GetData(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		}
 	}, {
 		"title": "Third",
-		"color": "#def",
+		"color": {"r": 41, "g": 3, "b": 4, "a": 0.42},
+		"usecolor": true,
+		"bgimage": "/images/bg3.svg",
 		"anchor": "third",
 		"slide": {
 			"type": "simple text",
