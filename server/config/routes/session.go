@@ -4,7 +4,7 @@ import (
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
 
-	"../handlers"
+	"../../handlers"
 )
 
 func initSessionRoutes(r *mux.Router) {
