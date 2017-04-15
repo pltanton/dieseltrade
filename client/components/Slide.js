@@ -37,9 +37,9 @@ class Slide extends Component {
     return(
       <div className='slide' >
         {this.props.admin ? <AdminBar edit={this.state.edit} onSettingsToggle={this.handleSettingsToggle} /> : null}
+        {this.state.edit && <SectionProperties section={this.props.section}
+                                               onSectionPropertiesChange={this.props.onSectionPropertiesChange}/>}
         <Container text>
-          {this.state.edit && <SectionProperties section={this.props.section}
-                                                 onSectionPropertiesChange={this.props.onSectionPropertiesChange}/>}
           <SlideElement content={slide.content} onContentChange={this.props.onContentChange} />
         </Container>
       </div>

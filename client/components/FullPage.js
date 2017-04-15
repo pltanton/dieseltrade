@@ -55,9 +55,9 @@ class FullPage extends Component {
 
     let fullPageOptions = {
       sectionClassName:     'section',
-      anchors:              this.state.data.sections.map((e, idx) => idx),
+      anchors:              this.state.data.sections.map((e) => e.anchor),
       scrollBar:            false,
-        addingTop:           60,
+      paddingTop:           60,
       navigation:           true,
       verticalAlign:        true,
       arrowNavigation:      true

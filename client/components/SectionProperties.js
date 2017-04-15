@@ -15,6 +15,11 @@ class SectionProperties extends Component {
     this.props.onSectionPropertiesChange({bgimage: event.target.value});
   }
 
+  handleAnchorChange = (event) => {
+    this.props.onSectionPropertiesChange({anchor: event.target.value});
+    window.location.hash = event.target.value;
+  }
+
   handleColorChange = (color) => {
     this.props.onSectionPropertiesChange({color: color.rgb});
   }
@@ -47,18 +52,21 @@ class SectionProperties extends Component {
                           onChange={this.handleColorChange}/>
           </Popup.Content>
         </Popup>
-        <Form.Checkbox toggle fitted checked={this.props.section.usecolor} onClick={this.handleColorToggle}/>
+        <Form.Checkbox fitted checked={this.props.section.usecolor} onClick={this.handleColorToggle}/>
       </Form.Group>
     </Form.Field>;
 
     return(
-      <Form>
-        <Form.Group>
-          <Form.Input label='Title' value={this.props.section.title} onChange={this.handleTitleChange} />
-          {ColorGroup}
-          <Form.Input label='Image' value={this.props.section.bgimage} onChange={this.handleImageChange} />
-        </Form.Group>
-      </Form>
+      <div className='SectionProperties'>
+        <Form>
+          <Form.Group>
+            <Form.Input label='Title' value={this.props.section.title} onChange={this.handleTitleChange} />
+            {ColorGroup}
+            <Form.Input label='Image' value={this.props.section.bgimage} onChange={this.handleImageChange} />
+            <Form.Input label='Anchor' value={this.props.section.anchor} onChange={this.handleAnchorChange} />
+          </Form.Group>
+        </Form>
+      </div>
     );
   }
 }
