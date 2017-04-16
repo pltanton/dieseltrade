@@ -1,9 +1,10 @@
-import FullPage from './FullPage'
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom'
+import FullPage from './FullPage'
+import Login from './Login'
 
 function Test(params) {
   return (
@@ -20,6 +21,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={FullPage}/>
           <Route exact path="/admin" render={() => <FullPage admin={true} />}/>
+          <Route exact path="/login" render={() => <Login />}/>
         </div>
       </Router>
     );

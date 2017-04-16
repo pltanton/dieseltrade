@@ -1,3 +1,5 @@
+import {Icon} from 'semantic-ui-react';
+
 function MenuItem(props) {
   return(
     <li data-menuanchor={props.anchor}>
@@ -12,9 +14,14 @@ class Menu extends Component {
       return(<MenuItem anchor={section.anchor} title={section.title} key={section.anchor}/>);
     });
     return(
-      <ul id="menu" className="menu">
-        {menuItems}
-      </ul>
+      <div className="Menu">
+        <ul>
+          {menuItems}
+        </ul>
+        <ul>
+          <li><Icon link name='save' onClick={this.props.onSave} /></li>
+        </ul>
+      </div>
     );
   }
 }

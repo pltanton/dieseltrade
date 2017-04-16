@@ -10,9 +10,9 @@ function AdminBar(props) {
   let settingIcon;
 
   if(props.edit) {
-    settingIcon = <Icon link name='asterisk' onClick={props.onSettingsToggle} />;
+    settingIcon = <Icon link name='unhide' onClick={props.onSettingsToggle} />;
   } else {
-    settingIcon = <Icon link name='setting' className='cog' onClick={props.onSettingsToggle} />;
+    settingIcon = <Icon link name='edit' onClick={props.onSettingsToggle} />;
   }
 
   return(

@@ -31,6 +31,13 @@ class FullPage extends Component {
     });
   }
 
+  // Send POSTR request to the server to set current sections state as data. That operation cannot be undone
+  handleSave = () => {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/data', true);
+    xhr.send(JSON.stringify(this.state.data));
+  }
+
   render() {
     const slides = this.state.data.sections.map((section, idx) => {
       let style
@@ -66,7 +73,7 @@ class FullPage extends Component {
     return (
       <div>
         <Header>
-          <Menu admin={this.props.admin} sections={this.state.data.sections}/>
+          <Menu admin={this.props.admin} sections={this.state.data.sections} onSave={this.handleSave} />
         </Header>
         <SectionsContainer className="container" {...fullPageOptions}>
           {slides}
