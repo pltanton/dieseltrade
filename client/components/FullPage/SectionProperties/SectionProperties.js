@@ -40,8 +40,7 @@ class SectionProperties extends Component {
     if(this.state.backup[newType]) {
       newSlide = this.state.backup[newType];
     } else {
-      newSlide = SLIDE_TYPES_MAP[newType].initialState();
-      newSlide.type = newType;
+      newSlide = {type: newType, content: SLIDE_TYPES_MAP[newType].initialState()};
     }
     console.log(newSlide);
     this.props.onSectionPropertiesChange({slide: newSlide})

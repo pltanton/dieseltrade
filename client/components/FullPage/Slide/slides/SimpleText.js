@@ -1,5 +1,5 @@
 import {Row, Col} from 'react-flexbox-grid';
-import Input from 'react-toolbox/lib/input'
+import Input from 'react-toolbox/lib/input';
 
 function SimpleText(props) {
   return(
@@ -20,6 +20,6 @@ class SimpleTextEdit extends Component{
   }
 }
 
-function simpleTextInitialState() {return({content: ''})};
+function simpleTextInitialState() {return({text: ''})};
 
 export {SimpleText, SimpleTextEdit, simpleTextInitialState};

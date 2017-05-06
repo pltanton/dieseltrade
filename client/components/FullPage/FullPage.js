@@ -18,7 +18,8 @@ class FullPage extends Component {
   handleContentChange = (idx) => {
     return((newContent) => {
       let sections = this.state.data.sections.slice();
-      sections[idx].slide.content = newContent;
+      let oldContent = sections[idx].slide.content;
+      sections[idx].slide.content = Object.assign(oldContent, newContent);
       this.setState({data: {sections: sections}});
     });
   }
