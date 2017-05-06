@@ -1,6 +1,9 @@
-import {Form, Card, Grid, Container, Message} from 'semantic-ui-react'
 import {Redirect} from 'react-router-dom'
+import {Card, CardText, CardTitle} from 'react-toolbox/lib/card'
+import Input from 'react-toolbox/lib/input'
+import Button from 'react-toolbox/lib/button'
 import cookie from 'react-cookie'
+import styles from './styles.css'
 
 class Login extends Component {
   constructor(props) {
@@ -8,12 +11,12 @@ class Login extends Component {
     this.state = {password: "", login: "", badLogin: false};
   }
 
-  handleLoginChange = (e) => {
-    this.setState({login:  e.target.value});
+  handleLoginChange = (value) => {
+    this.setState({login:  value});
   }
 
-  handlePasswordChange = (e) => {
-    this.setState({password: e.target.value});
+  handlePasswordChange = (value) => {
+    this.setState({password: value});
   }
 
   handleSubmit = (e) => {
@@ -40,18 +43,15 @@ class Login extends Component {
 
   render() {
     return(
-			<div className='Login' onSubmit={this.handleSubmit} >
-				<Card>
-					<Card.Content>
-						<Form>
-              {this.state.badLogin && <Message negative>Wrong login or password.</Message>}
-							<Form.Input label='Login' autoFocus value={this.state.name}
-                          onChange={this.handleLoginChange} />
-							<Form.Input label='Password' value={this.state.password} onChange={this.handlePasswordChange}
-                          type='password' />
-							<Form.Button content='LOGIN' fluid color='blue' />
-						</Form>
-					</Card.Content>
+			<div className={styles.wrapper} >
+				<Card className={styles.loginCard} >
+          <CardTitle title='Log in, please'/>
+					<CardText>
+            {this.state.badLogin && <Message negative>Wrong login or password.</Message>}
+            <Input label='Login' autoFocus value={this.state.name} onChange={this.handleLoginChange} />
+            <Input label='Password' value={this.state.password} onChange={this.handlePasswordChange} type='password' />
+            <Button label='Login' raised primary onClick={this.handleSubmit} />
+					</CardText>
 				</Card>
 			</div>
     );

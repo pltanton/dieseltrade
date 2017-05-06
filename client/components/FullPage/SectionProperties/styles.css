@@ -1,0 +1,17 @@
+.SectionProperties {
+    padding-bottom: 10px;
+}
+
+.popover {
+  position: absolute;
+  z-index: 2;
+  bottom: -230px;
+}
+
+.cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

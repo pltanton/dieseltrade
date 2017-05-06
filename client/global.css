@@ -1,4 +1,4 @@
-@import '~npm-font-open-sans/open-sans.css';
+/*@import '~npm-font-open-sans/open-sans.css';*/
 
 body {
     margin: 0;
@@ -6,7 +6,7 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-html, body, #root, #root > div {
+html, body, :global(.full), :global(.full > div) {
     height: 100%;
 	height: 100%;
 }

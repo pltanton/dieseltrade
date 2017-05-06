@@ -1,4 +1,5 @@
-import {Icon} from 'semantic-ui-react';
+import {MdSave} from 'react-icons/lib/md';
+import styles from './styles.css'
 
 function MenuItem(props) {
   return(
@@ -14,12 +15,12 @@ class Menu extends Component {
       return(<MenuItem anchor={section.anchor} title={section.title} key={section.anchor}/>);
     });
     return(
-      <div className="Menu">
+      <div className={styles.Menu}>
         <ul>
           {menuItems}
         </ul>
         <ul>
-          <li><Icon link name='save' onClick={this.props.onSave} /></li>
+          <li><MdSave onClick={this.props.onSave} /></li>
         </ul>
       </div>
     );

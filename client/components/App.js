@@ -3,8 +3,8 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import FullPage from './FullPage'
-import Login from './Login'
+import FullPage from './FullPage/FullPage'
+import Login from './Login/Login'
 
 function Test(params) {
   return (

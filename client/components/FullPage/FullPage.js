@@ -1,7 +1,8 @@
 import {SectionsContainer, Section, Header} from 'react-fullpage';
-import Slide from './Slide'
-import Menu from './Menu'
-import {colorToString} from './Utils';
+import Slide from './Slide/Slide'
+import Menu from './Menu/Menu'
+import {colorToString} from '../Utils';
+import styles from './styles.css'
 
 class FullPage extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class FullPage extends Component {
     });
 
     let fullPageOptions = {
-      sectionClassName:     'section',
+      sectionClassName:     styles.Section,
       anchors:              this.state.data.sections.map((e) => e.anchor),
       scrollBar:            false,
       paddingTop:           60,

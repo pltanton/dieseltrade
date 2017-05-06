@@ -1,22 +1,20 @@
-import SectionProperties from './SectionProperties';
-import {Icon, Container} from 'semantic-ui-react';
-import {SimpleText, SimpleTextEdit} from './slides/SimpleText'
-
-const SLIDE_TYPE_MAP = {
-  'simple text': [SimpleText, SimpleTextEdit]
-}
+import SectionProperties from '../SectionProperties/SectionProperties';
+import {Row, Col} from 'react-flexbox-grid';
+import {FaEdit, FaEye} from 'react-icons/lib/fa';
+import SLIDE_TYPES_MAP from './types'
+import styles from './styles.css'
 
 function AdminBar(props) {
   let settingIcon;
 
   if(props.edit) {
-    settingIcon = <Icon link name='unhide' onClick={props.onSettingsToggle} />;
+    settingIcon = <FaEye onClick={props.onSettingsToggle} />;
   } else {
-    settingIcon = <Icon link name='edit' onClick={props.onSettingsToggle} />;
+    settingIcon = <FaEdit onClick={props.onSettingsToggle} />;
   }
 
   return(
-    <div className='admin-panel'>{settingIcon}</div>
+    <div className={styles.AdminPanel}>{settingIcon}</div>
   );
 }
 
@@ -32,16 +30,18 @@ class Slide extends Component {
 
   render() {
     const slide = this.props.section.slide;
-    let SlideElement = SLIDE_TYPE_MAP[slide.type][this.state.edit ? 1 : 0];
+    let SlideElement = SLIDE_TYPES_MAP[slide.type][this.state.edit ? 'edit' : 'normal'];
 
     return(
       <div className='slide' >
         {this.props.admin ? <AdminBar edit={this.state.edit} onSettingsToggle={this.handleSettingsToggle} /> : null}
         {this.state.edit && <SectionProperties section={this.props.section}
                                                onSectionPropertiesChange={this.props.onSectionPropertiesChange}/>}
-        <Container text>
-          <SlideElement content={slide.content} onContentChange={this.props.onContentChange} />
-        </Container>
+        <Row center='xs'>
+          <Col xs={12} md={9} lg={8} >
+            <SlideElement content={slide.content} onContentChange={this.props.onContentChange} />
+          </Col>
+        </Row>
       </div>
     );
   }

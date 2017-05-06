@@ -1,6 +1,11 @@
-.Login {
+.wrapper {
 	height: 100%;
 	display: flex;
     justify-content: center;
     align-items: center;
+    background-color: LightSteelBlue;
+}
+
+.loginCard {
+    max-width: 300px;
 }
