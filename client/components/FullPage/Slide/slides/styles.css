@@ -1,3 +1,13 @@
+.header {
+    position: absolute;
+    top: 50px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 30px;
+}
+
 .fitImage {
     width: 100%;
     height: auto;
