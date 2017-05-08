@@ -8,6 +8,7 @@ import (
 func Init() *mux.Router {
 	r := mux.NewRouter()
 	api := r.PathPrefix("/api/").Subrouter()
+	initFileRoutes(api)
 	initDataRoutes(api)
 	initSessionRoutes(api)
 	initStatic(r)

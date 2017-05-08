@@ -4,9 +4,12 @@ import {Row, Col} from 'react-flexbox-grid';
 import Input from 'react-toolbox/lib/input';
 import Checkbox from 'react-toolbox/lib/checkbox';
 import Dropdown from 'react-toolbox/lib/dropdown';
+import Dialog from 'react-toolbox/lib/dialog';
+import Button from 'react-toolbox/lib/button';
 
 import SLIDE_TYPES_MAP from '../Slide/types.jsx';
 import {colorToString} from '../../Utils.jsx';
+import FileManager from '../../FileManager/FileManager.jsx';
 import styles from './styles.css';
 
 const TYPES = Object.entries(SLIDE_TYPES_MAP).map((val) => {
@@ -17,7 +20,7 @@ const TYPES = Object.entries(SLIDE_TYPES_MAP).map((val) => {
 class SectionProperties extends Component {
     constructor(props) {
         super(props);
-        this.state = { displayColorPicker: false, backup: {} };
+        this.state = {displayColorPicker: false, backup: {}, displayFileManager: false};
     }
 
     handleInputChange = (inputName) => {
@@ -46,6 +49,15 @@ class SectionProperties extends Component {
         this.props.onSectionPropertiesChange({slide: newSlide});
     }
 
+    handleFileManagerToggle = () => {
+        this.setState({displayFileManager: !this.state.displayFileManager});
+    }
+
+    handleImageSelect = (src) => {
+        this.handleFileManagerToggle();
+        this.handleInputChange('bgimage')(src);
+    }
+
     render() {
         const ColorGroup = <Row style={{position: 'relative'}}>
             <Input type='text' label='Color' value={colorToString(this.props.section.color)} readOnly
@@ -67,23 +79,30 @@ class SectionProperties extends Component {
             <Row around='xs' className={styles.SectionProperties} >
                 <Col xs={2} >
                     <Input type='text' label='Title' value={this.props.section.title}
-                        onChange={this.handleInputChange('title')} />
+                           onChange={this.handleInputChange('title')} />
                 </Col>
-                <Col xs={4} >
+                <Col xs={3} >
                     {ColorGroup}
                 </Col>
-                <Col xs={2} >
+                <Col xs={3} >
                     <Input type='text' label='Image' value={this.props.section.bgimage}
-                        onChange={this.handleInputChange('bgimage')} />
+                           onChange={this.handleInputChange('bgimage')} />
+                    <Button label='Select' onClick={this.handleFileManagerToggle} />
                 </Col>
                 <Col xs={2} >
                     <Input type='text' label='Anchor' value={this.props.section.anchor}
-                        onChange={this.handleInputChange('anchor')} />
+                           onChange={this.handleInputChange('anchor')} />
                 </Col>
                 <Col xs={2} >
                     <Dropdown label='Type' source={TYPES} value={this.props.section.slide.type}
-                        onChange={this.handleTypeChange} />
+                              onChange={this.handleTypeChange} />
                 </Col>
+                <Dialog active={this.state.displayFileManager}
+                        onOverlayClick={this.handleFileManagerToggle}
+                        onEscKeyDown={this.handleFileManagerToggle}
+                        title='File manager'>
+                    <FileManager onSelect={this.handleImageSelect} />
+                </Dialog>
             </Row>
         );
     }

@@ -1,0 +1,58 @@
+.imageBox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Image {
+    position: relative;
+    margin: 5px;
+    display: inline-block;
+    transition: box-shadow 300ms;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+.smallImage {
+    height: 70px;
+    width: auto;
+}
+
+.imageName {
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.deleteButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #c10528;
+    transition: all 200ms;
+
+    &:hover {
+        cursor: pointer;
+        color: #f9022f;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, .7);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

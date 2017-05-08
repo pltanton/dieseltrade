@@ -8,10 +8,16 @@ import styles from './styles.css';
 class FullPage extends Component {
     constructor(props) {
         super(props);
+        this.state = {data: {sections: []}};
+    }
+
+    componentWillMount() {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', '/api/data', false);
+        xhr.addEventListener('load', () => {
+            this.setState({data: JSON.parse(xhr.responseText)});
+        });
+        xhr.open('GET', '/api/data', true);
         xhr.send();
-        this.state = {data: JSON.parse(xhr.responseText)};
     }
 
     // Returns a handler, which should be provided to section by ID.
