@@ -5,7 +5,7 @@ import Switch from 'react-toolbox/lib/switch';
 import Dialog from 'react-toolbox/lib/dialog';
 import Button from 'react-toolbox/lib/button';
 
-import FileManager from '../../../FileManager/FileManager.jsx';
+import FileManager from '../../FileManager/FileManager.jsx';
 import styles from './styles.css';
 
 function Duo(props) {

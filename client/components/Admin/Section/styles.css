@@ -1,0 +1,42 @@
+.inlineForm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.SectionProperties {
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.pair {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:first-child {
+        margin-right: 5px;
+    }
+}
+
+.colorCheckbox {
+    margin-top: 14px;
+}
+
+.slidesTabs {
+    width: 100%;
+}
+
+.popover {
+    position: absolute;
+    z-index: 2;
+    bottom: -230px;
+}
+
+.cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}

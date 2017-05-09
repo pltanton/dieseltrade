@@ -2,7 +2,7 @@ import {Component} from 'react';
 import {Row, Col} from 'react-flexbox-grid';
 import {FaEdit, FaEye} from 'react-icons/lib/fa';
 
-import SectionProperties from '../SectionProperties/SectionProperties.jsx';
+import SectionProperties from '../Admin/SectionProperties/SectionProperties.jsx';
 import SLIDE_TYPES_MAP from './types.jsx';
 import styles from './styles.css';
 

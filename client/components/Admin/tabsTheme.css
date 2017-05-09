@@ -1,0 +1,30 @@
+.appbarTabs {
+  &.tabs {
+    border: 1px solid transparent;
+    height: 64px;
+    position: absolute;
+    left: 20px;
+    top: 0;
+  }
+
+  & .navigation {
+    align-items: center;
+    height: 64px;
+  }
+
+  & .label {
+    color: white;
+    text-transform: capitalize;
+
+    &.barActive {
+      color: white;
+    }
+  }
+
+  & .pointer {
+    background-color: rgb(255, 64, 129);
+    height: 4px;
+    margin-top: 0;
+    transform: translateY(-5px);
+  }
+}
