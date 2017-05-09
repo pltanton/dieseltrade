@@ -1,0 +1,36 @@
+:global(.slider-frame), :global(.slider-list), :global(.slider-slide), 
+.regularWrapper, .Section {
+    height: 100% !important;
+}
+
+.Section {
+    position: relative;
+}
+
+.nav {
+    font-size: 40px;
+    color: #3b424c;
+    transition: color 100ms;
+    &:hover {
+        color: #1b2028;
+        cursor: pointer;
+    }
+}
+
+.background, .tint {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.background {
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
+}
+
+.tint {
+    z-index: -1;
+}

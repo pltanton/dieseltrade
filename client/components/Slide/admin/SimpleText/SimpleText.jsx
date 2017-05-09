@@ -3,7 +3,7 @@ import Input from 'react-toolbox/lib/input';
 
 class SimpleText extends Component{
     handleContentChange = (value) => {
-        this.props.onContentChange({text: value});
+        this.props.onChange({content: {text: value}});
     }
 
     render() {

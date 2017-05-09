@@ -44,8 +44,7 @@ class Section extends Component {
             );
         });
         return (
-            <Grid>
-                <h5> Section properties </h5>
+            <div>
                 <Row>
                     <Col xs>
                         <SectionProperties {...this.props}
@@ -61,7 +60,7 @@ class Section extends Component {
                         </Tabs>
                     </Col>
                 </Row>
-            </Grid>
+            </div>
         );
     }
 }

@@ -1,9 +1,6 @@
 import {Component} from 'react';
-import $ from 'jquery';
-import 'fullpage.js';
-import {findDOMNode} from 'react-dom';
-import SLIDE_TYPES_MAP from '../Slide/user/index.jsx';
-
+import MySection from './Section/Section.jsx';
+import {Section, SectionsContainer} from 'react-fullpage';
 
 class User extends Component {
     constructor(props) {
@@ -20,24 +17,25 @@ class User extends Component {
         xhr.send();
     }
 
-    componentDidMount() {
-        $(findDOMNode(this.refs.fullpage)).fullpage();
-    }
 
     render() {
-        const sections = this.state.data.sections.map((section, idx) => {
-            const Slide = SLIDE_TYPES_MAP[section.slide.type];
+        const options = {
+            anchors: ['one', 'two', 'three'],
+            navigation: false,
+            arrowNavigation: true
+        };
+        const sections = this.state.data.sections.map((section) => {
             return(
-                <div className='section' key={idx}>
-                    <Slide content={section.slide.content} />
-                </div>
+                <Section key={section.anchor}>
+                    <MySection {...section} />
+                </Section>
             );
         });
 
         return (
-            <div ref='fullpage'>
+            <SectionsContainer {...options} >
                 {sections}
-            </div>
+            </SectionsContainer>
         );
     }
 }

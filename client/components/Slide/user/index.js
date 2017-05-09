@@ -6,4 +6,8 @@ const SLIDE_TYPES_MAP = {
     'duo': Duo
 };
 
-export default SLIDE_TYPES_MAP;
+export {
+    SimpleText,
+    Duo,
+    SLIDE_TYPES_MAP
+};
